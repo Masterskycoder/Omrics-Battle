@@ -1,0 +1,1576 @@
+            /**                                 **\
+              ***********************************
+              *     MasterCoder  Presents:      *
+              *                                 *
+              *    OMRICS BATTLE 1st EDITION    *
+              *     The game of survival.       *
+              *                                 *
+              ***********************************
+            */  
+            
+   /**                                                       **\
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * @Author
+     * 
+     * Created By: Mastercoder                               *
+     * Story Writter: Mastercoder                            *
+     * Inspired By: Qwertyaisy123 and Khanemon               *
+     * Graphics Designer: Mastercoder                        *
+     * Character Designer: Mastercoder                       *
+     * Chars inspiration: Nickelodeon and skytobelow12™ #TGT *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  **/
+
+/*
+
+Hi Am mastercoder i love making games and apps, i learnt python and cybersecurity.
+This is going to be my first longest game.
+
+If my game ranks up to the hot list i will make it for the app store.
+
+Beat other omrics, go to omrics academy, finish local legue e.t.c
+
+    Join My Google Classroom,
+        I teach Hacking, critical thinking, web design.
+        The code is: d70ytw
+        
+    I also have a Khan Academy class For comupter programming.
+        The code is: X88ZZK9P
+*/
+
+/**
+    *************************************************************
+    * Tags:                                                     *
+    *    Adventure, Super fiction, Fight, Action, Role Playing, *          *    Animation.                                             *
+    *************************************************************    
+    Version: First Edition.
+**/
+
+
+/**
+  @Suscribe
+    https://www.khanacademy.org/profile/masterskycoder/projects
+        By voting up and comment suscribe:
+            i will send updates to you and my latest projects.
+        
+        I had this idea of the game when i was eleven, i didn't know much code then. I only knew python(not the GUI part) and HTML/Css. I started learning the GUI part of python TKinter. 
+        I didn't still make the game, but when i saw khanemon(Bransford c's version of pokemon), i got inspired, i literally read his codes, it was confusing but i broke it down and i learnt few codes, Thanks to bransford c. 
+        My sister Qwertyaisy gave me few ideas and then i started this project. I hope you like the game, this is my first game on khan academy and first with processing js.
+        If you want to help comment "available".
+
+**/
+
+/*
+HOW TO PLAY:
+Arrow keys for movement.
+
+S stop movement.
+
+Spacebar to talk or fight with a person. And also for selecting.
+
+X for seeing your status, and team status.
+*/
+ 
+/*LOG:
+*/
+
+var c = createFont("cursive");//fonts
+var f = createFont("fantasy");
+
+var redy = 38;
+var bluey = 12;
+var greeny = 110;//colors
+
+var startgame = false;
+
+var message= "Hello Young Omric..... Press 'D' to\ncontinue";
+/*"To become the no.1 best omric, you'll\nneed to know your history. Weyy!! back a comet crashed into a forest, and alien grew from it, This Aliens are called mrits, name given by a hunter. When humans found the forest they turn it to a village. mrits looked like humans also until they reach 60 years, Humans killed mrits that get their real form, some mrits got married to humans. And reproduced what is called Omrics, you are a modern omric. You will have to train to become strong and also need a team. Good luck...."
+*///message
+
+var playerID = 0;
+var elasth = 100;
+var elast = 300;
+var messageelastx= 20;
+var messageelasty= 350;
+var ry = 400;
+var mx = 500;
+var my = 500;
+var stop = false;
+
+//chars in game mode
+var jason= function(x, y, ex, ey, ex1, ey1, hndx, hndy, hndx1, hndy1){
+    //body
+    stroke(0, 0, 0);
+    fill(29, 17, 92);
+    rect(x-10, y+4, 18, 20);
+    fill(54, 54, 54);
+    beginShape();
+        vertex(x-2, y+10);
+        vertex(x+4, y+15);
+        vertex(x+4, y+24);
+        vertex(x+10, y+24);
+        vertex(x+10, y+5);
+    endShape();
+    
+    //head
+    fill(252, 209, 124);
+    ellipse(x, y, 23, 23);
+    
+    //eyes
+    fill(0, 0, 0);
+    ellipse(ex, ey, 4, 4);
+    ellipse(ex1, ey1, 4, 4);
+    
+    //hands
+    fill(252, 209, 124);
+    ellipse(hndx, hndy, 7, 7);
+    ellipse(hndx1, hndy1, 7, 7);
+    
+    //legs
+    fill(54, 54, 54);
+    rect(x-10, y+24, 20, 18);
+    
+    //hair
+    fill(26, 5, 5);
+    rect(x-11, y-22, 21.5, 15);
+};
+var danny= function(x, y, ex, ey, ex1, ey1, hndx, hndy, hndx1, hndy1){
+    //body
+    stroke(0, 0, 0);
+    fill(122, 10, 122);
+    rect(x-10, y+4, 18, 20);
+    fill(87, 11, 158);
+    beginShape();
+        vertex(x-4,y+10);
+        vertex(x-2, y+18);
+        vertex(x+2, y+24);
+        vertex(x+10, y+24);
+        vertex(x+10, y+5);
+    endShape();
+    
+    //head
+    fill(249, 250, 180);
+    ellipse(x, y, 23, 23);
+    
+    //eyes
+    fill(196, 192, 224);
+    ellipse(ex, ey, 4, 4);
+    ellipse(ex1, ey1, 4, 4);
+    
+    //hands
+    fill(249, 250, 180);
+    ellipse(hndx, hndy, 7, 7);
+    ellipse(hndx1, hndy1, 7, 7);
+    
+    //legs
+    fill(87, 11, 158);
+    rect(x-10, y+24, 20, 18);
+    
+    //birth mark
+    stroke(199, 22, 152);
+    ellipse(x+5, y+5, 1, 1);
+    
+};
+var lily= function(x, y, ex, ey, ex1, ey1, hndx, hndy, hndx1, hndy1){
+    
+    noStroke();
+    fill(225, 255, 0);
+    rect(x-12, y-9, 23, 30, 10);
+    
+    //body
+    stroke(0, 0, 0);
+    fill(224, 67, 224);
+    rect(x-9, y+4, 18, 20);
+    fill(240, 8, 112);
+    beginShape();
+        vertex(x-4,y+10);
+        vertex(x-2, y+18);
+        vertex(x+8, y+20);
+        vertex(x+8, y+10);
+        vertex(x+10, y+5);
+    endShape();
+    noStroke();
+    fill(244, 245, 169);
+    rect(x-11, y+19.5, 19.5, 4);
+    
+    //head
+    fill(244, 245, 169);
+    ellipse(x, y, 23, 23);
+    
+    //eyes
+    stroke(0, 0, 0);
+    fill(196, 192, 224);
+    ellipse(ex, ey, 4, 4);
+    ellipse(ex1, ey1, 4, 4);
+    
+    //hands
+    noStroke();
+    fill(244, 245, 169);
+    ellipse(hndx, hndy, 7, 7);
+    ellipse(hndx1, hndy1, 7, 7);
+    
+    //legs
+    stroke(0, 0, 0);
+    fill(240, 8, 112);
+    rect(x-9, y+24, 18, 18);
+    
+    //hair
+    noStroke();
+    fill(252, 252, 10);
+    arc(x, y-7, 20, 10, 180, 360);
+    
+};
+
+//change costume
+var eyex = 200-4;
+var eyex1 = 200+4;
+var hndx = 200+13;
+var hndx1 = 200-13;
+
+//room x and y co-ordinates
+var roomx = -100;
+var roomy = 0;
+
+
+//chars in status / fight mode
+var monster= function(x, y) {
+    //head
+    fill(249, 250, 208);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(30, 0, 255);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(255, 248, 199);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(255, 255, 255);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x-8, y+80);
+        vertex(x-6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    fill(255, 255, 255);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    
+    //hand
+    fill(245, 250, 215);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var monster2= function(x, y) {
+    //head
+    fill(226, 227, 139);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(247, 247, 247);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-9, y+1, 2, 7);
+    ellipse(x+11, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(227, 220, 177);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(255, 0, 0);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(55, 5, 255);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x-8, y+80);
+        vertex(x-6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    fill(55, 5, 255);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    
+    //hand
+    fill(220, 235, 124);
+    ellipse(x+20, y+60, 30, 30);
+    ellipse(x-30, y+45, 30, 30);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var boy1= function(x, y) {
+    //head
+    noStroke();
+    fill(252, 209, 124);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(0, 0, 0);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    stroke(0, 0, 0);
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    noStroke();
+    fill(252, 209, 124);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    stroke(0, 0, 0);
+    fill(29, 17, 92);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+        
+    endShape();
+    fill(54, 54, 54);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    
+    //hair
+    noStroke();
+    fill(26, 5, 5);
+    beginShape();
+        vertex(x-24, y-10);
+        vertex(x-24, y-20);
+        vertex(x-28, y-30);
+        vertex(x-15, y-24);
+        vertex(x-15, y-50);
+        vertex(x-8, y-30);
+        vertex(x, y-52);
+        vertex(x+8, y-30);
+        vertex(x+15, y-50);
+        vertex(x+15, y-24);
+        vertex(x+28, y-30);
+        vertex(x+24, y-20);
+        vertex(x+24, y-10);
+    endShape();
+    
+    //hand
+    fill(252, 209, 124);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+};
+var boy2= function(x, y) {
+    //head
+    fill(249, 250, 180);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(196, 192, 224);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    fill(250, 15, 187);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    stroke(0, 0, 0);
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    noStroke();
+    fill(249, 250, 180);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    stroke(0, 0, 0);
+    fill(122, 10, 122);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    fill(87, 11, 158);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x-6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    
+    //hand
+    noStroke();
+    fill(249, 250, 180);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //birthmark
+    fill(199, 22, 152);
+    ellipse(x+11, y+15, 5, 5);
+};
+var girl1= function(x, y) {
+    //backhair
+    fill(225, 255, 0);
+    rect(x-26.5, y-20, 52, 52, 20);
+    //head
+    noStroke();
+    fill(244, 245, 169);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(255, 255, 255);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    fill(255, 0, 0);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    stroke(0, 0, 0);
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    noStroke();
+    fill(255, 248, 199);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    stroke(0, 0, 0);
+    fill(244, 245, 169);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(224, 67, 224);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+60);
+        vertex(x+8, y+60);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    fill(224, 67, 224);
+    arc(x-9, y+40, 20, 15, 1, 180);
+    fill(240, 8, 112);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+60);
+        vertex(x+8, y+60);
+        vertex(x-6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    arc(x+9, y+40, 20, 15, 1, 180);
+    
+    
+    //hand
+    noStroke();
+    fill(244, 245, 169);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //hair
+    fill(225, 255, 0);
+    arc(x, y-10, 44, 30, 180 ,360);
+    line(x-22, y-10, x+22, y-10);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var girl2= function(x, y) {
+    //backhair
+    fill(255, 0, 85);
+    rect(x-26.5, y-20, 52, 52, 20);
+    //head
+    noStroke();
+    fill(122, 122, 71);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(255, 5, 88);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    
+    //eyebrows
+    stroke(0, 0, 0);
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    noStroke();
+    fill(122, 122, 71);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(122, 122, 71);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    stroke(0, 0, 0);
+    fill(224, 67, 224);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+60);
+        vertex(x-8, y+80);
+        vertex(x+7, y+80);
+        vertex(x-8, y+28);
+    endShape();
+    fill(224, 67, 224);
+    arc(x-9, y+40, 20, 15, 1, 180);
+    fill(240, 8, 112);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x-6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    arc(x+9, y+40, 20, 15, 1, 180);
+    
+    
+    //hand
+    noStroke();
+    fill(122, 122, 71);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //hair
+    fill(255, 0, 102);
+    arc(x, y-10, 44, 30, 180 ,360);
+    line(x-22, y-10, x+22, y-10);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var nicky= function(x, y) {
+    //head
+    fill(189, 175, 121);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(251, 250, 255);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(189, 175, 121);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(9, 16, 133);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x-8, y+80);
+        vertex(x-6, y+50);
+        vertex(x, y+28);
+    endShape();
+    fill(9, 16, 133);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x, y+28);
+    endShape();
+    
+    //hand
+    fill(189, 175, 121);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var mae= function(x, y) {
+    //backhair
+    fill(0, 0, 0);
+    rect(x-26.5, y-20, 52, 52, 20);
+    //head
+    fill(199, 57, 227);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(242, 189, 242);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    fill(255, 0, 0);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    stroke(8, 8, 8);
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    noStroke();
+    fill(199, 57, 227);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(199, 57, 227);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    stroke(0, 0, 0);
+    fill(71, 66, 222);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+60);
+        vertex(x+8, y+60);
+        vertex(x+6, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    fill(71, 66, 222);
+    arc(x-9, y+40, 20, 15, 1, 180);
+    fill(9, 240, 25);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+60);
+        vertex(x+8, y+60);
+        vertex(x-6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    arc(x+9, y+40, 20, 15, 1, 180);
+    
+    
+    //hand
+    noStroke();
+    fill(199, 57, 227);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //hair
+    fill(0, 0, 0);
+    arc(x, y-10, 44, 30, 180 ,360);
+    line(x-22, y-10, x+22, y-10);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var mac= function(x, y) {
+    //head
+    fill(179, 175, 168);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(255, 255, 255);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(179, 175, 168);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(179, 175, 168);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(0, 0, 0);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x+8, y+28);
+        
+    endShape();
+    fill(255, 0, 21);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x-1, y+80);
+        vertex(x-8, y+50);
+        vertex(x+10, y+28);
+    endShape();
+    
+    //hair
+    fill(129, 30, 186);
+    beginShape();
+        vertex(x-24, y-10);
+        vertex(x-24, y-20);
+        vertex(x-28, y-30);
+        vertex(x-15, y-24);
+        vertex(x-15, y-50);
+        vertex(x-8, y-30);
+        vertex(x, y-52);
+        vertex(x+8, y-30);
+        vertex(x+15, y-50);
+        vertex(x+15, y-24);
+        vertex(x+28, y-30);
+        vertex(x+24, y-20);
+        vertex(x+24, y-10);
+    endShape();
+    
+    //hand
+    fill(179, 175, 168);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+};
+var ralph= function(x, y) {
+    //head
+    fill(249, 250, 180);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(0, 0, 0);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    fill(255, 0, 0);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(249, 250, 180);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(77, 71, 77);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+40);
+        vertex(x, y+28);
+    endShape();
+    fill(51, 6, 92);
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x-8, y+80);
+        vertex(x, y+50);
+        vertex(x-8, y+28);
+    endShape();
+    
+    //hand
+    fill(249, 250, 180);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //birthmark
+    fill(5, 5, 5);
+    ellipse(x, y-15, 5, 5);
+};
+var brian= function(x, y) {
+    //head
+    fill(250, 235, 180);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(127, 118, 166);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(250, 235, 180);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //jacket
+    fill(226, 227, 240);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x+8, y+80);
+        vertex(x+6, y+50);
+        vertex(x, y+28);
+    endShape();
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x, y+80);
+        vertex(x, y+50);
+        vertex(x, y+28);
+    endShape();
+    
+    //hand
+    fill(250, 235, 180);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //legs
+    /*
+    fill(5, 5, 5);
+    beginShape();
+        vertex(x-20, y+80);
+        vertex(x-22, y+100);
+        vertex(x-13, y+130);
+        vertex(x-7, y+126);
+        vertex(x-10, y+100);
+        vertex(x-5, y+85);
+        vertex(x+5, y+100);
+        vertex(x+7, y+130);
+        vertex(x+2, y+125);
+        vertex(x+15, y+110);
+        vertex(x+20, y+80);
+    endShape();*/
+};
+var ben= function(x, y) {
+    //head
+    fill(234, 235, 188);
+    ellipse(x, y, 50, 50);
+    
+    //eyes
+    fill(255, 255, 255);
+    ellipse(x-10, y, 10, 15);
+    ellipse(x+10, y, 10, 15);
+    ellipse(x-11, y+1, 2, 7);
+    ellipse(x+9, y+1, 2, 7);
+    
+    //eyebrows
+    beginShape();
+        vertex(x-14, y-13);
+        vertex(x-2, y-5);
+    endShape();
+    beginShape();
+        vertex(x+14, y-13);
+        vertex(x+2, y-5);
+    endShape();
+    
+    //neck
+    fill(234, 235, 188);
+    beginShape();
+        vertex(x-5, y+25);
+        vertex(x-7, y+30);
+        vertex(x+7, y+30);
+        vertex(x+5, y+25);
+    endShape();
+    
+    //body
+    fill(0, 196, 255);
+    rect(x-18.5, y+28, 40, 50);
+    
+    //extra
+    fill(18, 255, 54);
+    beginShape();
+        vertex(x-6, y+27);
+        vertex(x-23, y+30);
+        vertex(x-21, y+42);
+        vertex(x-21, y+80);
+        vertex(x-8, y+80);
+        vertex(x-6, y+50);
+        vertex(x+8, y+28);
+    endShape();
+    beginShape();
+        vertex(x+6, y+27);
+        vertex(x+23, y+30);
+        vertex(x+21, y+42);
+        vertex(x+21, y+80);
+        vertex(x-24, y+80);
+        vertex(x-24, y+50);
+        vertex(x-23, y+33);
+    endShape();
+    
+    //muscle
+    beginShape();
+        vertex(x, y+33);
+        vertex(x, y+48);
+        vertex(x-5, y+50);
+        vertex(x-10, y+48);
+    endShape();
+    beginShape();
+        vertex(x, y+33);
+        vertex(x, y+48);
+        vertex(x+5, y+50);
+        vertex(x+10, y+48);
+    endShape();
+    beginShape();
+        vertex(x, y+58);
+        vertex(x, y+77);
+    endShape();
+    beginShape();
+        vertex(x-2, y+59);
+        vertex(x-10, y+59);
+    endShape();
+    beginShape();
+        vertex(x+2, y+59);
+        vertex(x+10, y+59);
+    endShape();
+    beginShape();
+        vertex(x-2, y+65);
+        vertex(x-10, y+65);
+    endShape();
+    beginShape();
+        vertex(x+2, y+65);
+        vertex(x+10, y+65);
+    endShape();
+    beginShape();
+        vertex(x-2, y+72);
+        vertex(x-10, y+72);
+    endShape();
+    beginShape();
+        vertex(x+2, y+72);
+        vertex(x+10, y+72);
+    endShape();
+    
+    //hand
+    fill(234, 235, 188);
+    ellipse(x+20, y+45, 30, 30);
+    ellipse(x-30, y+60, 30, 30);
+    
+    //cap
+    fill(30, 0, 255);
+    arc(x, y-10, 44, 30, 180, 360);
+    fill(0, 0, 0);
+    rect(x-5, y-22, 10, 10);
+    line(x-24, y-10, x+23, y-10);
+};
+
+//item
+var bed= function(x, y) {
+    stroke(0, 0, 0);
+    fill(219, 216, 219);
+    rect(x, y, 70, 100);
+    fill(255, 255, 255);
+    rect(x+20, y+7, 30, 20, 5);
+    fill(4, 20, 99);
+    rect(x, y+20, 70, 80);
+    fill(42, 58, 130);
+    rect(x, y+20, 70, 10, 2);
+    stroke(159, 173, 235);
+    line(x+9, y+50, x+60, y+50);
+    line(x+9, y+70, x+60, y+70);
+};
+var wall= function(x, y) {
+    rect(x, y, 600, 430);
+};
+var roomTable= function(x, y) {
+    stroke(0, 0, 0);
+    fill(22, 9, 161);
+    rect(x, y, 150, 20);
+    fill(132, 102, 242);
+    rect(x+10, y+20, 130, 30); 
+};
+var roomTable2= function(x, y) {
+    stroke(0, 0, 0);
+    fill(255, 18, 18);
+    rect(x, y, 150, 20);
+    fill(240, 104, 104);
+    rect(x+10, y+20, 130, 30);  
+};
+var roomTable3= function(x, y) {
+    stroke(0, 0, 0);
+    fill(190, 7, 222);
+    rect(x, y, 150, 20);
+    fill(240, 127, 238);
+    rect(x+10, y+20, 130, 30);  
+};
+
+draw= function() {
+    startgame = false;
+    background(0, 0, 0);
+    fill(255, 255, 255);
+    rect(200, ry, 250, 400);
+    
+    
+    if (ry > 0) {
+        ry -= 5;    
+    }
+    monster(mx, my);
+    if (ry === 0) {
+        mx = 300;
+        my = 200;
+    }
+    monster2(100, 200);
+    fill(255, 255, 255);
+    textFont(c);
+    textSize(50);
+    text("Omrics", 20, 100);
+    fill(0, 0, 0);
+    textSize(62);
+    text("Battle", 210, 150);
+    
+    //button
+    fill(redy, bluey, greeny);
+    rect(150, 280, 100, 70);
+    fill(255, 255, 255);
+    textSize(30);
+    text("Start", 160, 325);
+    if (mouseIsPressed && mouseX > 150 && mouseX < 250 && mouseY > 280 && mouseY < 350) {
+        playSound(getSound("retro/coin"));
+        draw= function() {
+            background(0, 0, 0);
+            fill(255, 255, 255);
+            rect(0, elast, 400, elasth);
+            fill(0, 0, 0);
+            textSize(20);
+            text(message, messageelastx, messageelasty);
+            
+            
+            keyPressed= function() {
+                if(key.toString() === "d") {
+                    startgame = true;
+                    fill(0, 0, 0);
+                    elast = 0;
+                    elasth = 400;
+                    messageelastx = 10;
+                    messageelasty = 20;
+                    message = "To become the no.1 best omric, you'll\nneed to know your history. Weyy!! back a\ncomet crashed into a forest, and aliens\ngrew from it, This Aliens are called\nmrits, name given by a hunter. When\nhumans found the forest they turn it to a\nvillage. mrits looked like humans also until\nthey reach 60 years, Humans killed mrits\nthat get their real form, some mrits got\nmarried to humans. And reproduced what\nis called Omrics, you are a modern omric.\nYou will have to train to become strong\nand also need a team. Good luck....\n\nClick to continue";
+                    mouseClicked= function() {
+                        if(mouseIsPressed && mouseButton === RIGHT) {
+                            draw= function() {
+                                background(0, 0, 0);
+                                
+                                boy1(50, 60);
+                                text("Jason", 100, 60);
+                                text("Att: 50", 100, 80); 
+                                text("Def: 40", 100, 100);
+                                text("Acc: 100%", 100, 120);
+                                text("Pow: spikes", 100, 140);
+                                boy2(250, 60);
+                                text("Danny", 300, 60);
+                                text("Att: 70", 300, 80);
+                                text("Def: 20", 300, 100);
+                                text("Acc: 100%", 300, 120);
+                                text("Pow: Wizard", 280, 140);
+                                girl1(50, 200);
+                                text("Lily", 100, 200);
+                                text("Att: 50", 100, 220);
+                                text("Def: 40", 100, 240);
+                                text("Acc: 100%", 100, 260);
+                                text("Pow: Vampire", 80, 280);
+                                girl2(250, 200);
+                                text("Amy", 300, 200);
+                                text("Att: 30", 300, 220);
+                                text("Def: 70", 300, 240);
+                                text("Acc: 100%", 300, 260);
+                                text("Pow: Telepath", 270, 280);
+                                fill(38, 0, 255);
+                                text("Press a for Jason, s for Danny, d for Lily,\ng for Amy.", 20, 340);
+                                keyPressed= function() {
+                                    if(key.toString() === "a"){
+                                        playerID = 1;
+                                        playSound(getSound("retro/laser4"));
+                                    }
+                                    if(key.toString() === "s"){
+                                        playerID = 2;
+                                    }
+                                    if(key.toString() === "d"){
+                                        playerID = 3;
+                                    }
+                                    if(key.toString() === "g"){
+                                        playerID = 4;
+                                    }
+                                };
+                                if(playerID === 1){
+                                    draw= function() {
+                                        background(0, 0, 0);
+                                        fill(69, 39, 39);
+                                        wall(roomx, roomy);
+                                        bed(roomx+510, roomy+140);
+                                        roomTable(roomx+30, roomy+140);
+                                        
+                                        jason(200, 200, eyex, 200-2, eyex1, 200-2, hndx, 200+15, hndx1, 200+15);
+                                        fill(38, 19, 19);
+                                        stroke(0, 0, 0);
+                                        rect(roomx, roomy, 600, 120);
+                                        noStroke();
+                                        text("press s to stop", 20, 50);
+                                        
+                                        if(keyPressed && keyCode === RIGHT) {
+                                           
+                                            roomx -= 3;
+                                            eyex = 200+4;
+                                            eyex1 = 200+4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                            
+                                        }
+                                        if(keyPressed && keyCode === LEFT) {
+                                            roomx += 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200-4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                        }
+                                        if(keyPressed && keyCode === DOWN) {
+                                            roomy -= 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200+4;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if(keyPressed && keyCode === UP) {
+                                            roomy += 3;
+                                            eyex = 1000;
+                                            eyex1 = 1000;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if (roomx === 170){
+                                            roomx = roomx - 3;
+                                        }
+                                        if(roomx < -350){
+                                            roomx = roomx + 3;
+                                        }
+                                        if(roomy === 30){
+                                            roomy = roomy - 3;
+                                        }
+                                        if(roomy < -150){
+                                            roomy = roomy + 3;
+                                        }
+                                        fill(0, 0, 255);
+                                        text("press s to stop", 20, 50);
+                                    };
+                                }
+                                if(playerID === 2){
+                                    draw= function() {
+                                        background(0, 0, 0);
+                                        fill(69, 39, 39);
+                                        rect(roomx, roomy, 600, 430);
+                                        bed(roomx+510, roomy+140);
+                                        roomTable2(roomx+30, roomy+140);
+                                        
+                                        danny(200, 200, eyex, 200-2, eyex1, 200-2, hndx, 200+15, hndx1, 200+15);
+                                        fill(38, 19, 19);
+                                        stroke(0, 0, 0);
+                                        rect(roomx, roomy, 600, 120);
+                                        noStroke();
+                                        text("press s to stop", 20, 50);
+                                        
+                                        if(keyPressed && keyCode === RIGHT) {
+                                            roomx -= 3;
+                                            eyex = 200+4;
+                                            eyex1 = 200+4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                        }
+                                        if(keyPressed && keyCode === LEFT) {
+                                            roomx += 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200-4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                        }
+                                        if(keyPressed && keyCode === DOWN) {
+                                            roomy -= 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200+4;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if(keyPressed && keyCode === UP) {
+                                            roomy += 3;
+                                            eyex = 1000;
+                                            eyex1 = 1000;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if (roomx === 170){
+                                            roomx = roomx - 3;
+                                        }
+                                        if(roomx < -350){
+                                            roomx = roomx + 3;
+                                        }
+                                        if(roomy === 30){
+                                            roomy = roomy - 3;
+                                        }
+                                        if(roomy < -150){
+                                            roomy = roomy + 3;
+                                        }
+                                        fill(0, 0, 255);
+                                        text("press s to stop", 20, 50);
+                                    };
+                                }
+                                if(playerID === 3){
+                                    draw= function() {
+                                        background(0, 0, 0);
+                                        fill(69, 39, 39);
+                                        rect(roomx, roomy, 600, 430);
+                                        bed(roomx+510, roomy+140);
+                                        roomTable3(roomx+30, roomy+140);
+                                        
+                                        lily(200, 200, eyex, 200-2, eyex1, 200-2, hndx, 200+15, hndx1, 200+15);
+                                        fill(38, 19, 19);
+                                        stroke(0, 0, 0);
+                                        rect(roomx, roomy, 600, 120);
+                                        noStroke();
+                                        text("press s to stop", 20, 50);
+                                        
+                                        if(keyPressed && keyCode === RIGHT) {
+                                            roomx -= 3;
+                                            eyex = 200+4;
+                                            eyex1 = 200+4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                        }
+                                        if(keyPressed && keyCode === LEFT) {
+                                            roomx += 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200-4;
+                                            hndx = 200;
+                                            hndx1 = 200;
+                                        }
+                                        if(keyPressed && keyCode === DOWN) {
+                                            roomy -= 3;
+                                            eyex = 200-4;
+                                            eyex1 = 200+4;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if(keyPressed && keyCode === UP) {
+                                            roomy += 3;
+                                            eyex = 1000;
+                                            eyex1 = 1000;
+                                            hndx = 200+13;
+                                            hndx1 = 200-13;
+                                        }
+                                        if (roomx === 170){
+                                            roomx = roomx - 3;
+                                        }
+                                        if(roomx < -350){
+                                            roomx = roomx + 3;
+                                        }
+                                        if(roomy === 30){
+                                            roomy = roomy - 3;
+                                        }
+                                        if(roomy < -150){
+                                            roomy = roomy + 3;
+                                        }
+                                        fill(0, 0, 255);
+                                        text("press s to stop", 20, 50);
+                                    };
+                                }
+                            };
+                        }    
+                    };
+                }
+            };
+        };    
+    }
+};
